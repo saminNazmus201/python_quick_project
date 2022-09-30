@@ -19,8 +19,8 @@ def chose_place():
     return chose
     
 
-def update(list1,list2,list3,pos):
-    user_value=input("enter 'X' or 'O' : ")
+def update(list1,list2,list3,pos,user_value):
+    
     if pos in range(0,3):
         list1[pos]= user_value
         return list1
@@ -77,19 +77,30 @@ game_list3=[" "," "," "]
 
 game_view(game_list1,game_list2,game_list3)
 w=False
+chal=[]
 while w==False:
    #game_view(game_list1,game_list2,game_list3)
    s=chose_place()
-   update(game_list1,game_list2,game_list3,s)
+   value=input("enter 'X' or 'O' : ")
+   
+   chal.append(value)
+   
+   update(game_list1,game_list2,game_list3,s,value)
    game_view(game_list1,game_list2,game_list3)
    w=winner(game_list1,game_list2,game_list3)
    if w==True:
-    print("Winner")
-    break
+     print("Winner")
+     m=chal[-1]
+     print("Winner is "+m)
+     break
+   elif w==False and len(chal)==9:
+     print("MATCH DRAW")
+     w==True
+     break
+   
+   
 
    #game_ontheway=game_on()
-
-
 
 
 
